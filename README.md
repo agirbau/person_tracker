@@ -15,6 +15,7 @@ This README would normally document whatever steps are necessary to get your app
 * Database configuration
 * How to run tests
 * Deployment instructions
+* Clone MNC from https://github.com/daijifeng001/MNC
 
 ### Contribution guidelines ###
 
