@@ -2,11 +2,14 @@
 % pass a set of queries (images) and return a set of predictions for every
 % image. If the objective is not found, skip the frame.
 
-function [pred,vid] = person_tracker(track_dir,mask_dir,model_frame,model_mask,person_model,gpu_id)
+function [pred,vid] = person_tracker(track_dir,person_model,gpu_id,mask_dir)
 
 % Will consume about 8.5 GB of GPU MEM (MNC)
-if nargin == 5
+if nargin < 4
+    mask_dir = fullfile(main_root,'tmp_mask');
+if nargin < 3
     gpu_id = 0;
+end
 end
 
 
@@ -17,50 +20,47 @@ frames_name = {seq_frames.name};
 
 
 % 2.person detector for a set of frames
-obj_proposal(query.track_dir,query.tmp_personsearch,frames_name,gpu_id);
+obj_proposal(track_dir,mask_dir,frames_name,gpu_id);
 
 
 % 3.model comparison for every frame with original model (Battacharyya or chi2)
+frame_tmp = imread(fullfile(track_dir,frames_name{1}));
+vid = cell(1,length(frames_name));
+pred = zeros(size(frame_tmp,1),size(frame_tmp,2),length(frames_name));
+
 b_th = 0.07; % 0.07
-ii = 1;
+
 for i = 1:length(frames_name)
 
-    if i ~= relative_frame
+    frame_tmp = imread(fullfile(track_dir,frames_name{i}));
 
-        frame_tmp = imread(fullfile(query.track_dir,frames_name{i}));
+    % TODO: load mask of multiple annotations. RBG2label. Compare models.
+    % Choose 1 mask.
 
-        % TODO: load mask of multiple annotations. RBG2label. Compare models.
-        % Choose 1 mask.
+    [~,mask_name] = fileparts(frames_name{i});
+    mask_name = [mask_name '_mask.png'];
 
-        [~,mask_name] = fileparts(frames_name{i});
-        mask_name = [mask_name '_mask.png'];
+    mask_multiple = imread(fullfile(mask_dir,mask_name));
+    [mask_label,labels] = rgb2label(mask_multiple);
 
-        mask_multiple = imread(fullfile(query.tmp_personsearch,mask_name));
-        [mask_label,labels] = rgb2label(mask_multiple);
+%     subplot(3,3,i);
+%     imshow(mask_label,[]);
 
-    %     subplot(3,3,i);
-    %     imshow(mask_label,[]);
+    % label=1 is background
+    b_dist = ones(1,length(labels));
 
-        % label=1 is background
-        b_dist = ones(1,length(labels));
-
-        for j = 2:length(labels)
-            mask_tmp = mask_label == labels(j);
-            b_dist(j) = bhatt_distance(frame_tmp,mask_tmp,person_model); 
-        end
-
-        [b_min,idx] = min(b_dist);
-
-        if b_min <= b_th;
-            pred(:,:,ii) = double(mask_label == labels(idx));
-            vid{ii} = frame_tmp;  
-            ii = ii +1;
-        end
-    else
-        pred(:,:,ii) = query.mask;
-        vid{ii} = query.frame;  
-        ii = ii +1;
+    for j = 2:length(labels)
+        mask_tmp = mask_label == labels(j);
+        b_dist(j) = bhatt_distance(frame_tmp,mask_tmp,person_model); 
     end
+
+    [b_min,idx] = min(b_dist);
+
+    if b_min <= b_th;
+        pred(:,:,i) = double(mask_label == labels(idx));
+    end
+
+    vid{i} = frame_tmp;
 
 end
 
