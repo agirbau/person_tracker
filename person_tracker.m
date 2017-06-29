@@ -6,10 +6,10 @@ function [pred,vid] = person_tracker(track_dir,person_model,gpu_id,mask_dir)
 
 % Will consume about 8.5 GB of GPU MEM (MNC)
 if nargin < 4
-    mask_dir = fullfile(main_root,'tmp_mask');
-if nargin < 3
-    gpu_id = 0;
-end
+    mask_dir = fullfile(person_tracker_root,'tmp_mask');
+    if nargin < 3
+        gpu_id = 0;
+    end
 end
 
 
