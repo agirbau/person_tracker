@@ -33,10 +33,8 @@ b_th = 0.07; % 0.07
 
 for i = 1:length(frames_name)
 
+    % Load frame
     frame_tmp = imread(fullfile(track_dir,frames_name{i}));
-
-    % TODO: load mask of multiple annotations. RBG2label. Compare models.
-    % Choose 1 mask.
 
     [~,mask_name] = fileparts(frames_name{i});
     mask_name = [mask_name '_mask.png'];
@@ -44,19 +42,19 @@ for i = 1:length(frames_name)
     mask_multiple = imread(fullfile(mask_dir,mask_name));
     [mask_label,labels] = rgb2label(mask_multiple);
 
-%     subplot(3,3,i);
-%     imshow(mask_label,[]);
-
-    % label=1 is background
     b_dist = ones(1,length(labels));
 
+    % For each person extracted compute similarity
     for j = 2:length(labels)
         mask_tmp = mask_label == labels(j);
-        b_dist(j) = bhatt_distance(frame_tmp,mask_tmp,person_model); 
+        [~,tmp_model] = extract_color_features(frame_tmp,mask_tmp);
+        b_dist(j) = compute_distance(person_model,tmp_model,'bhatt');
     end
 
     [b_min,idx] = min(b_dist);
 
+    % If the most similar is lower than b_th assume that the person is the same
+    % as the model
     if b_min <= b_th;
         pred(:,:,i) = double(mask_label == labels(idx));
     end

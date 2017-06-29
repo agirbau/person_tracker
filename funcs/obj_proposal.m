@@ -23,4 +23,4 @@ cd(mnc_root)
 
 system(['./tools/object_proposal.py' ' --folder_path ' im_path ' --save_path ' save_path ' --im_names ' im_names ' --gpu ' num2str(gpu_id)]);
 
-cd(main_root)
+cd(person_tracker_root)

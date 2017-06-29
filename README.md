@@ -19,6 +19,8 @@ This README would normally document whatever steps are necessary to get your app
 * Copy the following files:
 	* funcs/object_proposal.py -> utils/MNC/tools
 	* funcs/vis_seq.py -> utils/MNC/lib/utils
+* Move the following files:
+	* funcs/mnc_root -> utils/MNC
 
 ### Contribution guidelines ###
 

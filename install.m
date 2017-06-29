@@ -1,14 +1,14 @@
 %% Function to add needed paths to the environment
 
 % main path
-addpath(main_root);
+addpath(person_tracker_root);
 
 % % utils: OSVOS, NII instance search, OOB
 % %addpath(genpath('utils'));
 % addpath(fullfile(main_root,'utils','OSVOS-caffe'));
 % addpath(fullfile(main_root,'utils','COB'));
-addpath(fullfile(main_root,'utils','MNC'));
-addpath(fullfile(main_root,'funcs'));
+addpath(fullfile(person_tracker_root,'utils','MNC'));
+addpath(fullfile(person_tracker_root,'funcs'));
 % addpath(fullfile(main_root,'utils','RBPF_NII'));
 % addpath(fullfile(main_root,'utils','RBPF_NII','MCG_aux'));
 % addpath(fullfile(main_root,'utils','mmread'));
