@@ -17,8 +17,8 @@ This README would normally document whatever steps are necessary to get your app
 * Deployment instructions
 * Clone MNC from https://github.com/daijifeng001/MNC
 * Copy the following files:
-	funcs/object_proposal.py -> utils/MNC/tools
-	funcs/vis_seq.py -> utils/MNC/lib/utils
+	-funcs/object_proposal.py -> utils/MNC/tools
+	-funcs/vis_seq.py -> utils/MNC/lib/utils
 
 ### Contribution guidelines ###
 
