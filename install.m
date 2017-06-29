@@ -8,6 +8,7 @@ addpath(main_root);
 % addpath(fullfile(main_root,'utils','OSVOS-caffe'));
 % addpath(fullfile(main_root,'utils','COB'));
 addpath(fullfile(main_root,'utils','MNC'));
+addpath(fullfile(main_root,'funcs'));
 % addpath(fullfile(main_root,'utils','RBPF_NII'));
 % addpath(fullfile(main_root,'utils','RBPF_NII','MCG_aux'));
 % addpath(fullfile(main_root,'utils','mmread'));
