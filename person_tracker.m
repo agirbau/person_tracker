@@ -2,15 +2,18 @@
 % pass a set of queries (images) and return a set of predictions for every
 % image. If the objective is not found, skip the frame.
 
-function [pred,vid] = person_tracker(query,person_model,relative_frame)
+function [pred,vid] = person_tracker(track_dir,mask_dir,model_frame,model_mask,person_model,gpu_id)
 
-gpu_id = 4;
+% Will consume about 8.5 GB of GPU MEM (MNC)
+if nargin == 5
+    gpu_id = 0;
+end
+
 
 % 1.prepare the frames structure
-seq_frames = dir(fullfile(query.track_dir,'*.*'));
+seq_frames = dir(fullfile(track_dir,'*.*'));
 seq_frames = seq_frames(~ismember({seq_frames.name},{'.','..'}));  
 frames_name = {seq_frames.name};
-frames_name = sort_nat(frames_name);
 
 
 % 2.person detector for a set of frames
