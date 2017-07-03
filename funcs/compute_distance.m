@@ -15,6 +15,9 @@ feat2 = feat2 / norm2;
 switch dist_type
     case 'eucl'
         dist = sqrt(sum((feat1 - feat2).^2));
+    case 'cosine'
+        coef = sum(feat1 .* feat2) / (sqrt(sum(feat1.^2)) * sqrt(sum(feat2.^2)));
+	dist = 1-coef;
     case 'bhatt'
         coef = sum(sqrt(abs(feat1 .* feat2)));
         dist = -log(coef);
