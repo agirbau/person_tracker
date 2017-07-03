@@ -3,7 +3,7 @@
 function dist = compute_distance(feat1,feat2,dist_type)
 
 if nargin == 2
-   dist_type = 'cosine'; 
+   dist_type = 'eucl'; 
 end
 
 %TODO: cosine distance or others
@@ -13,7 +13,7 @@ feat1 = feat1 / norm1;
 feat2 = feat2 / norm2;
         
 switch dist_type
-    case 'cosine'
+    case 'eucl'
         dist = sqrt(sum((feat1 - feat2).^2));
     case 'bhatt'
         coef = sum(sqrt(abs(feat1 .* feat2)));
