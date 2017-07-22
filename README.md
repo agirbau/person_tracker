@@ -1,6 +1,6 @@
 ### Person Tracker ###
 
-* Semi-supervised Person tracker. Providing a person mask (or a bounding box over the desired person) do the tracking. Uses [MNC](https://github.com/daijifeng001/MNC) for person extraction.
+* Semi-supervised Person tracker for Matlab (with python wrapper). Providing a person mask (or a bounding box over the desired person) do the tracking. Uses [MNC](https://github.com/daijifeng001/MNC) for person extraction.
 * Version 0.1
 
 ### Setting up ###
