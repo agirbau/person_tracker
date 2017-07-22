@@ -1,6 +1,9 @@
-%% Person tracker
+%% Person tracker using MNC
 % pass a set of queries (images) and return a set of predictions for every
 % image. If the objective is not found, skip the frame.
+
+% Inputs: (folder_with_frames_to_track,vector_person_model,gpu_id,optional_dir_for_MNC)
+% Ouputs: (masks,frames)
 
 function [pred,vid] = person_tracker(track_dir,person_model,gpu_id,mask_dir)
 
