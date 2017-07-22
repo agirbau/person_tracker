@@ -1,34 +1,22 @@
-# README #
+### Person Tracker ###
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository for? ###
-
-* Person tracker. Providing a person mask (or a bounding box over the desired person) do the tracking.
+* Semi-supervised Person tracker. Providing a person mask (or a bounding box over the desired person) do the tracking. Uses [MNC](https://github.com/daijifeng001/MNC) for person extraction.
 * Version 0.1
 
-### How do I get set up? ###
+### Setting up ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-* Clone MNC from https://github.com/daijifeng001/MNC
-* Copy the following files:
+* Clone MNC from https://github.com/daijifeng001/MNC into "./utils"
+* *Copy* the following files:
 	* funcs/object_proposal.py -> utils/MNC/tools
 	* funcs/vis_seq.py -> utils/MNC/lib/utils
-* Move the following files:
+* *Move* the following files:
 	* funcs/mnc_root -> utils/MNC
 
-### Contribution guidelines ###
+### Playing with person tracker ###
 
-* Writing tests
-* Code review
-* Other guidelines
+* Run install.m
+* Enjoy!
 
-### Who do I talk to? ###
+### TODO ###
 
-* Repo owner or admin
-* Other community or team contact
+* Add model generation!
