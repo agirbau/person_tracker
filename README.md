@@ -20,3 +20,4 @@
 ### TODO ###
 
 * Add model generation!
+* Script to download MNC and move files in it automatically
