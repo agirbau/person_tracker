@@ -15,9 +15,9 @@
 ### Playing with person tracker ###
 
 * Run install.m
+* Check "./demo"
 * Enjoy!
 
 ### TODO ###
 
-* Add model generation!
-* Script to download MNC and move files in it automatically
+* Script to download MNC and move in it automatically
