@@ -19,7 +19,7 @@ mask = imread(fullfile(person_tracker_root,'demo','stacey_mask.png'));
 [~,person_model] = extract_color_features(img,mask);
 
 % Set GPU ID (0 if unspecified)
-gpuID = 5;
+gpuID = 0;
 
 % Track the person
 [pred,vid] = person_tracker(track_dir,person_model,gpuID,mask_dir);
